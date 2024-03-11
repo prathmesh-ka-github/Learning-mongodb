@@ -1,4 +1,11 @@
 # Learning MongoDB.  
+## MongoDB is a source-available, cross-platform, document-oriented database program. Classified as a NoSQL database product, MongoDB utilizes JSON-like documents with optional schemas. MongoDB is developed by MongoDB Inc. and current versions are licensed under the Server Side Public License.  
+
+
+<p align="center">
+<img src="image-1.png" />
+<p/>
+
 
 ### Basic commands for MongoDB Shell.
 1. To show Databases -
@@ -76,3 +83,22 @@
 > db.students.find().sort({gpa:1}).limit(5)
 ```
 
+9. Update fields.
+```
+//update one
+//syntax
+> db.students.updateOne({-selection criteria-}, {$set:{-update field:value-}})
+
+
+//examples
+>db.students.updateOne({name:'Spongebob'}, {$set:{fullTime:true}})
+
+
+//update many
+//syntax
+> db.students.updateMany({-selection criteria-}, {$set:{-update field:value-}})
+
+//examples
+//$exists checks if does the document has that field.
+> db.students.updateMany({fullTime:{$exits:false}}, {$set:{fullTime:true}})
+```
