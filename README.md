@@ -20,23 +20,59 @@
 ```
 > use school
 > db.dropDatabase()
+    //deletes current database
 ```
 
 5. Inserting document in a database. In MongoDB we save data by inserting documents in the collection. Same as key:value pairs in JSON -
 ```
 > use school
-\\using database school.
+    //using database school.
 
 > db.createCollection("students")
-\\creating new collection named students.
+    //creating new collection named students.
 
 > db.students.insertOne({name:'Spongebob', age:30, gpa:3.2})
-\\inserting one document into the collection.
+    //inserting one document into the collection.
 ```
 
 6. To show contents of a collection.
 ```
 > db.students.find()
+
+//multiple fiters
+> db.students.find({gpa:4.0, fullTime:true})
 ```
 
-7. Sorting 
+7. Projection.
+
+```
+//syntax
+> db.students.find({-filter-}, {-projection-})
+
+
+//examples
+> db.students.find({fullTime:true}, {name:true, _id:false})
+
+> db.students.find({}, {name:true, gpa:true, _id:false})
+``` 
+
+8. Sorting and limiting.  
+```
+//syntax
+> db.-collectionName-.find().sort({-field- : -ascending(1) and decending(-1)-})
+
+> db.-collectionName-.find().limit(-limitNumber-)
+
+
+
+//examples
+> db.students.find().sort({name:1})
+    //this will sort the outputs by name and ascending order
+
+> db.students.find().limit(2)
+    //this will limit results to 2
+
+//both sorting and limiting
+> db.students.find().sort({gpa:1}).limit(5)
+```
+
